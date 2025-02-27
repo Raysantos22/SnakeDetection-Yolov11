@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Snake Detection</string>
+    <string name="gpu">GPU</string>
+
+
+    <string name="snake_library">Snake Library</string>
+    <string name="back_to_detection">Back to Detection</string>
+    <string name="safety_info">If encountered, maintain distance and do not attempt to handle. In case of bite, seek immediate medical attention.</string>
+    <string name="description_title">Description</string>
+    <string name="habitat_title">Habitat</string>
+    <string name="safety_title">Safety Information</string>
+</resources>
