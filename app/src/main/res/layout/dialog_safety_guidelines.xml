@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80000000">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        app:cardBackgroundColor="@color/darkGreen"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Title with icon -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_warning"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="Warning" />
+
+                <TextView
+                    android:id="@+id/safetyTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Safety Guidelines"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Before proceeding to scanning, please read:"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                android:gravity="center"
+                android:layout_marginBottom="16dp" />
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/safetyScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:scrollbars="vertical"
+                android:fadeScrollbars="false"
+                android:background="@color/darkGreen"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <!-- Each guideline in its own card for better visual separation -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/sandColor">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:text="1"
+                                android:textColor="@color/darkGreen"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:background="@drawable/number_circle"
+                                android:gravity="center"
+                                android:layout_marginEnd="12dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="This app is designed for educational purposes only and should not replace professional medical advice or emergency services."
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/sandColor">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:text="2"
+                                android:textColor="@color/darkGreen"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:background="@drawable/number_circle"
+                                android:gravity="center"
+                                android:layout_marginEnd="12dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Keep a safe distance from any snake you are attempting to identify. Never approach or touch a snake, regardless of what the app identifies it as."
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/sandColor">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:text="3"
+                                android:textColor="@color/darkGreen"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:background="@drawable/number_circle"
+                                android:gravity="center"
+                                android:layout_marginEnd="12dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="For venomous snake bites, seek immediate medical attention even if the app identifies the snake as non-venomous. The app's identification may not always be 100% accurate."
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/sandColor">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:text="4"
+                                android:textColor="@color/darkGreen"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:background="@drawable/number_circle"
+                                android:gravity="center"
+                                android:layout_marginEnd="12dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="The app requires adequate lighting and a clear view of the snake for proper identification. Poor visibility or partial views may lead to incorrect results."
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/sandColor">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:text="5"
+                                android:textColor="@color/darkGreen"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:background="@drawable/number_circle"
+                                android:gravity="center"
+                                android:layout_marginEnd="12dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="If you receive a warning that a snake is extremely close, move away immediately to a safe distance."
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/sandColor">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:text="6"
+                                android:textColor="@color/darkGreen"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:background="@drawable/number_circle"
+                                android:gravity="center"
+                                android:layout_marginEnd="12dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="In case of a snake bite, call emergency services right away before using this app."
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/sandColor">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:text="7"
+                                android:textColor="@color/darkGreen"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:background="@drawable/number_circle"
+                                android:gravity="center"
+                                android:layout_marginEnd="12dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="This app works best with snakes native to the region it's been trained on. It may not accurately identify non-native species."
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/sandColor">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:text="8"
+                                android:textColor="@color/darkGreen"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:background="@drawable/number_circle"
+                                android:gravity="center"
+                                android:layout_marginEnd="12dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="The reliability of identification can be affected by factors such as the snake's posture, camouflage, lighting conditions, and image quality."
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/sandColor">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:text="9"
+                                android:textColor="@color/darkGreen"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:background="@drawable/number_circle"
+                                android:gravity="center"
+                                android:layout_marginEnd="12dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="By proceeding to use this application, you acknowledge and accept that the developers are not liable for any harm or injury that may occur from relying on the information provided."
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/sandColor">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:text="10"
+                                android:textColor="@color/darkGreen"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:background="@drawable/number_circle"
+                                android:gravity="center"
+                                android:layout_marginEnd="12dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="If you encounter a snake, prioritize your safety first. Maintain a safe distance and do not attempt to capture or handle the snake for better identification."
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Checkbox at the bottom -->
+                    <CheckBox
+                        android:id="@+id/readGuidelinesCheckBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="I have read and understood the safety guidelines"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:padding="8dp"/>
+
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <Button
+                android:id="@+id/nextButton"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/lightGreen"
+                android:paddingStart="16dp"
+                android:text="NEXT"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

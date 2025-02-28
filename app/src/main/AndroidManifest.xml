@@ -19,18 +19,35 @@
         tools:targetApi="31">
         <activity
             android:name="com.SnakeDetection.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
+        <activity
+            android:name="SnakeDetection.FirstAidActivity"
+            android:exported="false"/>
+        <activity
+            android:name="SnakeDetection.SnakeLibraryActivity"
+            android:exported="false"/>
+        <activity
+            android:name="SnakeDetection.EmergencyHotlineActivity"
+            android:exported="false"/>
         <activity
             android:name=".SnakeDetailsActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden" />
+        <activity
+            android:name=".LandingActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <uses-native-library
             android:name="libOpenCL.so"
             android:required="false"/>

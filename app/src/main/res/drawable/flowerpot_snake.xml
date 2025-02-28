@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+
+    <!-- Snake body (smaller, thin) -->
+    <path
+        android:fillColor="#8B4513"
+        android:pathData="M40,70 Q55,55 70,70 Q85,80 100,70 Q110,60 100,50 Q90,40 80,45 Q75,47 70,50 Q65,45 60,47 Q55,49 55,52 Q45,45 40,50 Q35,55 40,70 Z" />
+
+    <!-- Snake head (smaller) -->
+    <path
+        android:fillColor="#8B4513"
+        android:pathData="M40,70 Q35,75 32,70 Q30,65 32,60 Q35,57 40,60 Z" />
+
+    <!-- Flowerpot -->
+    <path
+        android:fillColor="#DC7633"
+        android:pathData="M20,100 L40,80 L80,80 L100,100 Z" />
+
+    <path
+        android:fillColor="#784212"
+        android:pathData="M25,100 L25,120 L95,120 L95,100 Z" />
+
+    <!-- Snake eye (tiny) -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M35,62 Q35.5,61 36,62 Q36.5,63 36,63.5 Q35.5,64 35,63.5 Q34.5,63 35,62 Z" />
+</vector>

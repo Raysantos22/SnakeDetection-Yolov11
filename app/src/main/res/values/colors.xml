@@ -15,4 +15,17 @@
     <color name="red">#FFFF0000</color>
     <color name="yellow">#FFFFFF00</color>
     <color name="bounding_box_color">#FF00FF00</color>
+
+
+
+    <color name="darkGray">#555555</color>
+
+    <color name="scanningRed">#F44336</color>
+    <color name="nonVenomousGreen">#4CAF50</color>
+    <color name="scanAgainBlue">#2196F3</color>
+
+    <!-- Design colors -->
+    <color name="darkGreen">#4A6A3A</color>  <!-- Main background color -->
+    <color name="lightGreen">#8BA560</color> <!-- Button panel background -->
+    <color name="sandColor">#E2CD9F</color>
 </resources>

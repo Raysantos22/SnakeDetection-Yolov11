@@ -1,133 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!-- Header section with dark green background -->
+    <LinearLayout
+        android:id="@+id/headerSection"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
-
-        <View
-            android:id="@+id/viewDangerIndicator"
-            android:layout_width="match_parent"
-            android:layout_height="24dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:background="@color/green" />
-
-        <TextView
-            android:id="@+id/textSnakeName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/viewDangerIndicator"
-            tools:text="King Cobra" />
-
-        <TextView
-            android:id="@+id/textScientificName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textStyle="italic"
-            android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@+id/textSnakeName"
-            tools:text="Ophiophagus hannah" />
-
-        <TextView
-            android:id="@+id/textDangerLevel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/textScientificName"
-            tools:text="Danger Level: Highly Venomous - Fatal" />
+        android:layout_height="0dp"
+        android:background="@color/darkGreen"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintHeight_percent="0.20"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageSnake"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="16dp"
-            android:scaleType="fitCenter"
-            android:background="#EEEEEE"
-            android:src="@drawable/placeholder_snake"
-            android:visibility="visible"
-            android:contentDescription="Snake image"
-            app:layout_constraintTop_toBottomOf="@+id/textDangerLevel" />
+            android:id="@+id/snakeIcon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:contentDescription="Snake Icon"
+            android:src="@drawable/snake_icon" />
 
         <TextView
-            android:id="@+id/descriptionTitle"
+            android:id="@+id/snakeTitleHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Description"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/imageSnake" />
+            android:gravity="center"
+            android:text="KING COBRA"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
-        <TextView
-            android:id="@+id/textDescription"
+    <!-- Content area with light green background -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/lightGreen"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerSection">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/descriptionTitle"
-            tools:text="The world's longest venomous snake, capable of growing up to 18 feet. Known for its distinctive hood and deadly venom." />
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/habitatTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Habitat"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/textDescription" />
+            <!-- Snake name in content area -->
+            <TextView
+                android:id="@+id/textSnakeName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="KING COBRA"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textHabitat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/habitatTitle"
-            tools:text="Forests of Southeast Asia and India. Usually avoids human contact." />
+            <Space
+                android:id="@+id/spacer1"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/textSnakeName" />
 
-        <TextView
-            android:id="@+id/safetyTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Safety Information"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/textHabitat" />
+            <!-- Scientific name -->
+            <TextView
+                android:id="@+id/textScientificName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ophiophagus hannah"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="italic"
+                app:layout_constraintTop_toBottomOf="@+id/spacer1" />
 
-        <TextView
-            android:id="@+id/textSafety"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/safetyTitle"
-            android:text="If encountered, maintain distance and do not attempt to handle. In case of bite, seek immediate medical attention. Do not apply tourniquets or try to suck out venom." />
+            <Space
+                android:id="@+id/spacer2"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/textScientificName" />
 
-        <Button
-            android:id="@+id/buttonBack"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Back to Detection"
-            app:layout_constraintTop_toBottomOf="@+id/textSafety"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            <!-- Danger level with color indicator -->
+            <LinearLayout
+                android:id="@+id/dangerSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/spacer2">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+                <View
+                    android:id="@+id/viewDangerIndicator"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@color/red" />
+
+                <TextView
+                    android:id="@+id/textDangerLevel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Danger Level: Highly Venomous - Fatal"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <Space
+                android:id="@+id/spacer3"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/dangerSection" />
+
+            <!-- Full-size snake image -->
+            <ImageView
+                android:id="@+id/imageSnake"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:contentDescription="Snake Image"
+                android:src="@drawable/placeholder_snake"
+                app:layout_constraintTop_toBottomOf="@+id/spacer3" />
+
+            <Space
+                android:id="@+id/spacer4"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/imageSnake" />
+
+            <!-- Description section -->
+            <TextView
+                android:id="@+id/descriptionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/spacer4" />
+
+            <TextView
+                android:id="@+id/textDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="The world's longest venomous snake, capable of growing up to 18 feet. Known for its distinctive hood and deadly venom."
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionTitle" />
+
+            <Space
+                android:id="@+id/spacer5"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/textDescription" />
+
+            <!-- Habitat section -->
+            <TextView
+                android:id="@+id/habitatTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Habitat"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/spacer5" />
+
+            <TextView
+                android:id="@+id/textHabitat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Forests of Southeast Asia and India. Usually avoids human contact."
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@+id/habitatTitle" />
+
+            <Space
+                android:id="@+id/spacer6"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/textHabitat" />
+
+            <!-- Safety information section -->
+            <TextView
+                android:id="@+id/safetyTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Safety Information"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/spacer6" />
+
+            <TextView
+                android:id="@+id/textSafety"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="If encountered, maintain distance and do not attempt to handle. In case of bite, seek immediate medical attention. Do not apply tourniquets or try to suck out venom."
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@+id/safetyTitle" />
+
+            <!-- Back button -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/backButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:cardBackgroundColor="@color/sandColor"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/textSafety">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="BACK"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

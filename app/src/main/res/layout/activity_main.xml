@@ -1,22 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout android:background="@color/black"
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/camera_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:background="@color/darkGreen">
 
+    <!-- Top Camera Controls Bar -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cameraControlsPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGreen"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Flip Camera Button -->
+        <ImageButton
+            android:id="@+id/flipCameraButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Flip Camera"
+            android:padding="8dp"
+            android:src="@drawable/baseline_flip_camera_ios_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+        <!-- Zoom Slider -->
+        <SeekBar
+            android:id="@+id/zoomSlider"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:progressTint="@color/white"
+            android:thumbTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/flashButton"
+            app:layout_constraintStart_toEndOf="@+id/flipCameraButton"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Flash Button -->
+        <ImageButton
+            android:id="@+id/flashButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Flash"
+            android:padding="8dp"
+            android:src="@drawable/ic_flash_off"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Camera Preview Area - Now below the controls -->
     <androidx.camera.view.PreviewView
         android:id="@+id/view_finder"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintBottom_toTopOf="@id/cameraActionsPanel"
         app:layout_constraintDimensionRatio="3:4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cameraControlsPanel"
         app:layout_constraintVertical_bias="0.5"
         app:scaleType="fillStart" />
 
@@ -25,62 +82,138 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:translationZ="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="3:4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintBottom_toBottomOf="@id/view_finder"
+        app:layout_constraintEnd_toEndOf="@id/view_finder"
+        app:layout_constraintStart_toStartOf="@id/view_finder"
+        app:layout_constraintTop_toTopOf="@id/view_finder" />
 
     <TextView
-        tools:text="100ms"
-        android:textColor="@color/white"
         android:id="@+id/inferenceTime"
-        android:layout_margin="32dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/view_finder"
+        app:layout_constraintTop_toTopOf="@+id/view_finder"
+        tools:text="100ms" />
 
+    <!-- Hidden GPU toggle for developer options -->
+    <ToggleButton
+        android:id="@+id/isGpu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        android:textColor="@color/white"
+        android:textOff="@string/gpu"
+        android:textOn="@string/gpu"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPanel"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Camera Shutter and Photo Library Panel -->
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cameraActionsPanel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingVertical="4dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:background="@color/darkGreen"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@id/buttonPanel">
 
-        <ToggleButton
-            android:id="@+id/isGpu"
-            android:background="@color/orange"
+        <!-- Photo Library Button -->
+        <ImageButton
+            android:id="@+id/photoLibraryButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Photo Library"
+            android:padding="8dp"
+            android:src="@drawable/ic_photo_library"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+        <!-- Camera Shutter Button -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/cameraShutterButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textOff="@string/gpu"
-            android:textOn="@string/gpu"
+            android:backgroundTint="@color/white"
+            android:contentDescription="Take Photo"
+            app:borderWidth="2dp"
+            app:fabCustomSize="64dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
+            app:maxImageSize="32dp"
+            app:tint="@color/darkGreen" />
 
-        <Button
-            android:id="@+id/snakeLibraryButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="4dp"
-            android:text="Snake Library"
-            android:textColor="@android:color/white"
+        <!-- Spacer View to balance layout -->
+        <View
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--    <ImageView-->
-<!--        android:id="@+id/ivTop"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"/>-->
+    <!-- Bottom Scanning Button Panel -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/buttonPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGreen"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/startScanButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/sandColor"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/startScanButtonText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="START SCANNING"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Keep this hidden but in the layout for reference -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/showResultButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/sandColor"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="SHOW RESULT"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

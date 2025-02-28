@@ -24,7 +24,7 @@ class SnakeInfoProvider {
             description = "Also known as the Brahminy Blind Snake, this is one of the smallest snake species. They are non-venomous and completely harmless to humans.",
             dangerLevel = "Harmless",
             habitat = "Found in soil and leaf litter in tropical regions. Often transported in potted plants.",
-            imageResId = R.drawable.placeholder_snake
+            imageResId = R.drawable.flowerpot
         )
 
         snakeInfoMap["King Cobra"] = SnakeInfo(
@@ -33,7 +33,7 @@ class SnakeInfoProvider {
             description = "The world's longest venomous snake, capable of growing up to 18 feet. Known for its distinctive hood and deadly venom.",
             dangerLevel = "Highly Venomous - Fatal",
             habitat = "Forests of Southeast Asia and India. Usually avoids human contact.",
-            imageResId = R.drawable.placeholder_snake
+            imageResId = R.drawable.kingcobra
         )
 
         snakeInfoMap["Pit Viper"] = SnakeInfo(
@@ -42,7 +42,7 @@ class SnakeInfoProvider {
             description = "A subfamily of venomous snakes that have heat-sensing pits between their eyes and nostrils, helping them detect prey.",
             dangerLevel = "Venomous - Medical emergency",
             habitat = "Diverse habitats across Americas and Asia, including forests, grasslands, and deserts.",
-            imageResId = R.drawable.placeholder_snake
+            imageResId = R.drawable.pitviper
         )
 
         snakeInfoMap["Rat Snake"] = SnakeInfo(
@@ -51,7 +51,7 @@ class SnakeInfoProvider {
             description = "Non-venomous snake that plays an important role in controlling rodent populations. Fast-moving and good climbers.",
             dangerLevel = "Harmless",
             habitat = "Found in a variety of habitats including agricultural areas, forests, and near human settlements.",
-            imageResId = R.drawable.placeholder_snake
+            imageResId = R.drawable.ratsnake
         )
 
         snakeInfoMap["Reticulated Python"] = SnakeInfo(
@@ -60,7 +60,7 @@ class SnakeInfoProvider {
             description = "One of the world's longest snakes, known for its complex geometric patterns. A powerful constrictor that's not venomous.",
             dangerLevel = "Non-venomous but potentially dangerous",
             habitat = "Tropical rainforests, woodlands, and nearby human habitations in Southeast Asia.",
-            imageResId = R.drawable.placeholder_snake
+            imageResId = R.drawable.python
         )
 
         snakeInfoMap["Sea Snake"] = SnakeInfo(
@@ -69,7 +69,7 @@ class SnakeInfoProvider {
             description = "Highly adapted for marine life with paddle-like tails and valved nostrils. Many species have potent venom.",
             dangerLevel = "Highly Venomous",
             habitat = "Warm coastal waters of the Indian and Pacific Oceans.",
-            imageResId = R.drawable.placeholder_snake
+            imageResId = R.drawable.seasnake
         )
     }
 
