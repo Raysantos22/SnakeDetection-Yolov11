@@ -47,12 +47,15 @@ class SnakeDetailsActivity : AppCompatActivity() {
         // Simplified danger level color indicator - only RED or GREEN
         val dangerIndicator = findViewById<View>(R.id.viewDangerIndicator)
         when {
-            // If contains "Venomous" anywhere in the danger level, mark as venomous (RED)
-            snakeInfo.dangerLevel.contains("Venomous", ignoreCase = true) ->
+            // If exactly matches "Venomous", mark as venomous (RED)
+            snakeInfo.dangerLevel.trim() == "Venomous" ->
                 dangerIndicator.setBackgroundColor(Color.RED)
-            // Otherwise mark as non-venomous (GREEN)
-            else ->
+            // If exactly matches "Non-Venomous", mark as non-venomous (GREEN)
+            snakeInfo.dangerLevel.trim() == "Non-Venomous" ->
                 dangerIndicator.setBackgroundColor(ContextCompat.getColor(this, R.color.nonVenomousGreen))
+            // Optional: Default case to handle any unexpected danger levels
+            else ->
+                dangerIndicator.setBackgroundColor(Color.GRAY)
         }
 
         // Set up back button
