@@ -2,5 +2,5 @@ Flowerpot Snake
 King Cobra
 Pit Viper
 Rat Snake
-Reticulated Pyhton
+Reticulated Python
 Sea Snake

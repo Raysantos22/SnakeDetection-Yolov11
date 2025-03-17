@@ -125,7 +125,7 @@ class MainActivity : AppCompatActivity(), Detector.DetectorListener {
         }
 
         // Show loading indicator or message
-        Toast.makeText(this, "Analyzing image...", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
 
         // Submit the bitmap for snake detection
         cameraExecutor.execute {

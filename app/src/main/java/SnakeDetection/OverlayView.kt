@@ -2,7 +2,6 @@ package com.SnakeDetection
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -18,7 +17,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import java.util.LinkedList
 import kotlin.math.max
-
+import kotlin.math.sqrt
 
 class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
     private var results = listOf<BoundingBox>()
@@ -99,18 +98,22 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
         var isExtremelyCloseSnake = false
 
         results.forEach { box ->
-            // Set box color based on danger level
+            // Get snake info to determine danger level
             val snakeInfo = snakeInfoProvider.getSnakeInfo(box.clsName)
-            when (snakeInfo?.dangerLevel) {
-                "Highly Venomous - Fatal", "Highly Venomous" ->
-                    boxPaint.color = Color.RED
-                "Venomous - Medical emergency" ->
-                    boxPaint.color = Color.rgb(255, 165, 0) // Orange
-                "Non-venomous but potentially dangerous" ->
-                    boxPaint.color = Color.YELLOW
-                else ->
-                    boxPaint.color = Color.GREEN
+
+            // Determine color and venomous status
+            val isVenomous = when (snakeInfo?.dangerLevel) {
+                "Venomous", "venomous", "non venomous", "Non Venomous" -> true
+                else -> false
             }
+
+            // Set box color based on venomous status
+            val boxColor = if (isVenomous) {
+                ContextCompat.getColor(context, R.color.red)
+            } else {
+                ContextCompat.getColor(context, R.color.darkGreen)
+            }
+            boxPaint.color = boxColor
 
             val left = box.x1 * width
             val top = box.y1 * height
@@ -134,22 +137,94 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
 
             canvas.drawRect(left, top, right, bottom, boxPaint)
 
-            val drawableText = box.clsName
-            textBackgroundPaint.getTextBounds(drawableText, 0, drawableText.length, bounds)
-            val textWidth = bounds.width()
-            val textHeight = bounds.height()
+            // Snake name in upper left outside the box
+            val nameText = box.clsName
+            val namePaint = Paint().apply {
+                color = ContextCompat.getColor(context, R.color.white)
+                style = Paint.Style.FILL
+                textSize = 50f
+                typeface = Typeface.DEFAULT_BOLD
+            }
 
+            // Measure name text
+            val nameBounds = Rect()
+            namePaint.getTextBounds(nameText, 0, nameText.length, nameBounds)
+            val nameWidth = nameBounds.width()
+            val nameHeight = nameBounds.height()
+
+            // Draw name background outside the box
+            val nameBackgroundPaint = Paint().apply {
+                color = if (isVenomous) {
+                    ContextCompat.getColor(context, R.color.red)
+                } else {
+                    ContextCompat.getColor(context, R.color.darkGreen)
+                }
+                style = Paint.Style.FILL
+            }
             canvas.drawRect(
-                left,
+                left - 5f,
+                top - nameHeight - 15f,
+                left + nameWidth + 20f,
                 top,
-                left + textWidth + BOUNDING_RECT_TEXT_PADDING,
-                top + textHeight + BOUNDING_RECT_TEXT_PADDING,
-                textBackgroundPaint
+                nameBackgroundPaint
             )
-            canvas.drawText(drawableText, left, top + bounds.height(), textPaint)
+
+            // Draw name text outside the box
+            canvas.drawText(
+                nameText,
+                left + 5f,
+                top - 10f,
+                namePaint
+            )
+
+            // Status text below the name
+            val statusText = if (isVenomous) "VENOMOUS" else "NON-VENOMOUS"
+            val statusPaint = Paint().apply {
+                color = ContextCompat.getColor(context, R.color.white)
+                style = Paint.Style.FILL
+                textSize = 40f
+                typeface = Typeface.DEFAULT_BOLD
+            }
+
+            // Measure status text
+            val statusBounds = Rect()
+            statusPaint.getTextBounds(statusText, 0, statusText.length, statusBounds)
+            val statusWidth = statusBounds.width()
+            val statusHeight = statusBounds.height()
+
+            // Draw status background below the name
+            val statusBackgroundPaint = Paint().apply {
+                color = if (isVenomous) {
+                    ContextCompat.getColor(context, R.color.red)
+                } else {
+                    ContextCompat.getColor(context, R.color.darkGreen)
+                }
+                style = Paint.Style.FILL
+            }
+            canvas.drawRect(
+                left - 5f,
+                top,
+                left + statusWidth + 20f,
+                top + statusHeight + 15f,
+                statusBackgroundPaint
+            )
+
+            // Draw status text below the name
+            canvas.drawText(
+                statusText,
+                left + 5f,
+                top + statusHeight + 5f,
+                statusPaint
+            )
 
             // Draw an attractive "Tap for info" button BELOW at the right side of the bounding box
             val infoText = "Tap for info"
+            val infoButtonTextPaint = Paint().apply {
+                color = ContextCompat.getColor(context, R.color.white)
+                textSize = 40f
+                textAlign = Paint.Align.CENTER
+                typeface = Typeface.DEFAULT_BOLD
+            }
             infoButtonTextPaint.getTextBounds(infoText, 0, infoText.length, bounds)
             val textPadding = 12f
             val buttonWidth = bounds.width() + 2 * textPadding
@@ -160,11 +235,20 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
             val buttonTop = bottom  // Start at the bottom edge of the bounding box
 
             // Create and draw the button background with rounded corners
+            val infoButtonPaint = Paint().apply {
+                color = ContextCompat.getColor(context, R.color.scanAgainBlue)
+                style = Paint.Style.FILL
+            }
             val buttonRect = RectF(buttonLeft, buttonTop, right, buttonTop + buttonHeight)
             canvas.drawRoundRect(buttonRect, 10f, 10f, infoButtonPaint)
 
             // Draw text (no icon)
-            canvas.drawText(infoText, buttonRect.centerX(), buttonRect.centerY() + bounds.height()/3, infoButtonTextPaint)
+            canvas.drawText(
+                infoText,
+                buttonRect.centerX(),
+                buttonRect.centerY() + bounds.height()/3,
+                infoButtonTextPaint
+            )
         }
 
         // Handle very close or extremely close snake warnings
@@ -176,7 +260,6 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
             vibrate()
         }
     }
-
     private fun drawWarning(canvas: Canvas, warningText: String, stopScanning: Boolean) {
         // Draw red warning background
         val warningPaint = Paint().apply {
@@ -243,12 +326,12 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
         // Draw danger level indicator
         val indicatorPaint = Paint()
         when (snakeInfo.dangerLevel) {
-            "Highly Venomous - Fatal", "Highly Venomous" ->
+            "Venomous" ->
                 indicatorPaint.color = Color.RED
-            "Venomous - Medical emergency" ->
+            "Venomous" ->
                 indicatorPaint.color = Color.rgb(255, 165, 0) // Orange
-            "Non-venomous but potentially dangerous" ->
-                indicatorPaint.color = Color.YELLOW
+            "Non Venomous" ->
+                indicatorPaint.color = Color.GREEN
             else ->
                 indicatorPaint.color = Color.GREEN
         }
@@ -296,24 +379,24 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
         }
         val buttonTextPaint = Paint().apply {
             color = Color.BLACK
-            textSize = 40f
+            textSize = 120f
             textAlign = Paint.Align.CENTER
         }
 
         // Close button (X)
-        canvas.drawCircle(cardRect.right - 40f, cardRect.top + 40f, 30f, buttonPaint)
-        buttonTextPaint.textSize = 45f
-        canvas.drawText("×", cardRect.right - 40f, cardRect.top + 55f, buttonTextPaint)
+        canvas.drawCircle(cardRect.right - 40f, cardRect.top + 40f, 50f, buttonPaint)
+        buttonTextPaint.textSize = 120f
+        canvas.drawText("×", cardRect.right - 40f, cardRect.top + 80f, buttonTextPaint)
 
         // More info button
         val moreInfoRect = RectF(
             cardRect.right - 200f,
-            cardRect.bottom - 80f,
-            cardRect.right - 30f,
+            cardRect.bottom - 120f,
+            cardRect.right - 1f,
             cardRect.bottom - 30f
         )
         buttonPaint.color = Color.rgb(70, 130, 180) // Steel blue
-        canvas.drawRoundRect(moreInfoRect, 30f, 30f, buttonPaint)
+        canvas.drawRoundRect(moreInfoRect, 50f, 50f, buttonPaint)
         buttonTextPaint.color = Color.WHITE
         buttonTextPaint.textSize = 35f
         canvas.drawText("MORE INFO", moreInfoRect.centerX(), moreInfoRect.centerY() + 12f, buttonTextPaint)
@@ -359,7 +442,6 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
         currentSnakeInfo = null
         invalidate()
     }
-
     override fun onTouchEvent(event: MotionEvent): Boolean {
         if (event.action == MotionEvent.ACTION_DOWN) {
             if (showExtendedInfo && currentSnakeInfo != null) {
@@ -373,9 +455,9 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
                 // Close button hit test
                 val closeButtonX = cardRect.right - 40f
                 val closeButtonY = cardRect.top + 40f
-                val distance = Math.sqrt(
-                    Math.pow((event.x - closeButtonX).toDouble(), 2.0) +
-                            Math.pow((event.y - closeButtonY).toDouble(), 2.0)
+                val distance = sqrt(
+                    (event.x - closeButtonX).pow(2) +
+                            (event.y - closeButtonY).pow(2)
                 )
 
                 if (distance <= 30.0) {
@@ -437,5 +519,8 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
 
     companion object {
         private const val BOUNDING_RECT_TEXT_PADDING = 8
+
+        // Extension function to calculate power of 2
+        private fun Float.pow(n: Int): Float = Math.pow(this.toDouble(), n.toDouble()).toFloat()
     }
 }
