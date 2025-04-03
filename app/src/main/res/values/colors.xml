@@ -28,4 +28,10 @@
     <color name="darkGreen">#4A6A3A</color>  <!-- Main background color -->
     <color name="lightGreen">#8BA560</color> <!-- Button panel background -->
     <color name="sandColor">#E2CD9F</color>
+
+
+    <color name="woodColor">#D7C19D</color>
+    <color name="brightGreen">#7BCA7B</color>
+    <color name="redTextColor">#D33F3F</color>
+    <color name="grayText">#5D5D5D</color>
 </resources>

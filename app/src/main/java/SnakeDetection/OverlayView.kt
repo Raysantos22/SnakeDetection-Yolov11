@@ -254,7 +254,7 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
         // Handle very close or extremely close snake warnings
         if (isExtremelyCloseSnake) {
             // Display warning and vibrate
-            drawWarning(canvas, "WARNING: SNAKE EXTREMELY CLOSE!", true)
+//            drawWarning(canvas, "WARNING: SNAKE EXTREMELY CLOSE!", true)
         } else if (isVeryCloseSnake) {
             // Just vibrate
             vibrate()

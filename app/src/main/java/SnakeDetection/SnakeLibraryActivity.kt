@@ -22,7 +22,7 @@ class SnakeLibraryActivity : AppCompatActivity() {
         }
         
         // Set up click listeners for each snake card
-        setupSnakeCards()
+//        setupSnakeCards()
     }
     
     private fun setupSnakeCards() {
