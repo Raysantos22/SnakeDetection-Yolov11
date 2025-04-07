@@ -23,6 +23,9 @@ class EmergencyHotlineActivity : AppCompatActivity() {
         findViewById<Button>(R.id.callEmergencyButton).setOnClickListener {
             dialPhoneNumber("911")
         }
+        findViewById<Button>(R.id.tarlac).setOnClickListener {
+            dialPhoneNumber("(045) 491 8970")
+        }
 
         findViewById<Button>(R.id.callNPMCCButton).setOnClickListener {
             dialPhoneNumber("+63285241078")

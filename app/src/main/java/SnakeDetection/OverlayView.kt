@@ -36,6 +36,11 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
     private var snakeInfoProvider = SnakeInfoProvider()
     private var vibrator: Vibrator? = null
 
+    // Add loading state variables
+    private var isLoading = false
+    private var loadingStartTime = 0L
+    private var loadingPaint = Paint()
+
     private var onSnakeClickListener: ((SnakeInfo) -> Unit)? = null
 
     init {
@@ -50,6 +55,7 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
     fun clear() {
         results = listOf()
         // Don't reset showExtendedInfo here - let it persist until explicitly closed
+        isLoading = false  // Reset loading state
         invalidate()
         initPaints()
     }
@@ -83,6 +89,12 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
         infoButtonTextPaint.textSize = 40f
         infoButtonTextPaint.textAlign = Paint.Align.CENTER
         infoButtonTextPaint.typeface = Typeface.DEFAULT_BOLD
+
+        // Loading indicator paint
+        loadingPaint.color = Color.WHITE
+        loadingPaint.style = Paint.Style.STROKE
+        loadingPaint.strokeWidth = 10f
+        loadingPaint.isAntiAlias = true
     }
 
     override fun draw(canvas: Canvas) {
@@ -260,6 +272,7 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
             vibrate()
         }
     }
+
     private fun drawWarning(canvas: Canvas, warningText: String, stopScanning: Boolean) {
         // Draw red warning background
         val warningPaint = Paint().apply {
@@ -399,7 +412,35 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
         canvas.drawRoundRect(moreInfoRect, 50f, 50f, buttonPaint)
         buttonTextPaint.color = Color.WHITE
         buttonTextPaint.textSize = 35f
-        canvas.drawText("MORE INFO", moreInfoRect.centerX(), moreInfoRect.centerY() + 12f, buttonTextPaint)
+
+        // If loading, show loading state instead of "MORE INFO" text
+        if (isLoading) {
+            // Draw loading text
+            canvas.drawText("LOADING...", moreInfoRect.centerX(), moreInfoRect.centerY() + 12f, buttonTextPaint)
+
+            // Draw loading spinner
+            val currentTime = System.currentTimeMillis()
+            val elapsedTime = currentTime - loadingStartTime
+            val angle = (elapsedTime / 30) % 360
+
+            val spinnerSize = 25f
+            val spinnerCenterX = moreInfoRect.left + 35f
+            val spinnerCenterY = moreInfoRect.centerY()
+
+            val oval = RectF(
+                spinnerCenterX - spinnerSize,
+                spinnerCenterY - spinnerSize,
+                spinnerCenterX + spinnerSize,
+                spinnerCenterY + spinnerSize
+            )
+
+            canvas.drawArc(oval, angle.toFloat(), 270f, false, loadingPaint)
+
+            // Trigger redraw to animate the spinner
+            invalidate()
+        } else {
+            canvas.drawText("MORE INFO", moreInfoRect.centerX(), moreInfoRect.centerY() + 12f, buttonTextPaint)
+        }
     }
 
     private fun splitTextIntoLines(text: String, paint: Paint, maxWidth: Float): List<String> {
@@ -428,6 +469,8 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
 
     fun setResults(boundingBoxes: List<BoundingBox>) {
         results = boundingBoxes
+        // Reset loading state when new results come in
+        isLoading = false
         invalidate()
     }
 
@@ -440,8 +483,29 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
     fun hideSnakeInfo() {
         showExtendedInfo = false
         currentSnakeInfo = null
+        isLoading = false
         invalidate()
     }
+
+    // Start loading animation
+    fun startLoading() {
+        isLoading = true
+        loadingStartTime = System.currentTimeMillis()
+        invalidate()
+    }
+
+    // Stop loading animation
+    fun stopLoading() {
+        isLoading = false
+        invalidate()
+    }
+
+    // Call this method from your activity when the user navigates back
+    fun handleBackNavigation() {
+        isLoading = false
+        hideSnakeInfo()
+    }
+
     override fun onTouchEvent(event: MotionEvent): Boolean {
         if (event.action == MotionEvent.ACTION_DOWN) {
             if (showExtendedInfo && currentSnakeInfo != null) {
@@ -461,6 +525,8 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
                 )
 
                 if (distance <= 30.0) {
+                    // Explicitly reset loading state when closing
+                    isLoading = false
                     hideSnakeInfo()
                     return true
                 }
@@ -468,13 +534,25 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
                 // More info button hit test
                 val moreInfoRect = RectF(
                     cardRect.right - 200f,
-                    cardRect.bottom - 80f,
-                    cardRect.right - 30f,
+                    cardRect.bottom - 120f,
+                    cardRect.right - 1f,
                     cardRect.bottom - 30f
                 )
 
-                if (moreInfoRect.contains(event.x, event.y)) {
-                    currentSnakeInfo?.let { onSnakeClickListener?.invoke(it) }
+                if (moreInfoRect.contains(event.x, event.y) && !isLoading) {
+                    // Start loading animation
+                    startLoading()
+                    // Notify listener with a reset callback
+                    currentSnakeInfo?.let { snakeInfo ->
+                        onSnakeClickListener?.invoke(snakeInfo)
+                        // Schedule a fallback reset after 10 seconds in case the callback is never called
+                        postDelayed({
+                            if (isLoading) {
+                                isLoading = false
+                                invalidate()
+                            }
+                        }, 10000)
+                    }
                     return true
                 }
 
