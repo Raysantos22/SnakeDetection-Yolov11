@@ -121,6 +121,70 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <!-- Prevention Section -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="PREVENTION:"
+                        android:textColor="@color/darkGreen"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="• Be aware of your surroundings when hiking, gardening, or working outdoors\n\n• Make noise when walking in snake-prone areas to alert them of your presence\n\n• Wear long pants, long sleeves, and closed-toe shoes\n\n• Avoid reaching into holes or under rocks without checking first\n\n• Use a torch at night in outdoor areas\n\n• Store food properly in containers\n\n• Keep your yard clear of brush, leaves, and debris\n\n• Stay calm and move away slowly if you encounter a snake"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- If You Encounter a Snake Section -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="IF YOU ENCOUNTER A SNAKE:"
+                        android:textColor="@color/orange"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="• Stay calm - do not approach, catch, or kill the snake\n\n• Move away slowly - give the snake space to retreat\n\n• Remember the snake's appearance (color, size, markings)\n\n• Take a photograph from a safe distance if possible\n\n• Treat every snake bite as a medical emergency"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/backButton"
                 android:layout_width="match_parent"

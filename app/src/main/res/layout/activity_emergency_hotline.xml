@@ -81,7 +81,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Emergency Services"
+                            android:text="National Emergency Services"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -128,7 +128,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Poison Control Center"
+                            android:text="National Poison Management and Control Center"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -136,19 +136,66 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="For poison and venom information"
+                            android:text="Located at Philippine General Hospital, Manila"
                             android:textColor="@color/darkGray"
                             android:textSize="14sp" />
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/callPoisonControlButton"
+                        android:id="@+id/callNPMCCButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/orange"
-                        android:text="1-800-222-1222"
+                        android:text="+63 2 8524 1078"
                         android:textColor="@color/white"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Research Institute for Tropical Medicine"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Primary producer of Philippine Cobra Antivenom"
+                            android:textColor="@color/darkGray"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/callRITMButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/orange"
+                        android:text="+63 2 8807 2628"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -178,7 +225,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="• State clearly that it's a snake bite emergency\n\n• Describe the snake if possible (color, pattern, size)\n\n• Provide the victim's age, weight, and condition\n\n• Describe any symptoms (swelling, pain, difficulty breathing)\n\n• Share your exact location for fastest response\n\n• Follow all instructions given by emergency personnel"
+                        android:text="• State clearly that it's a snake bite emergency\n\n• Describe the snake if possible (color, pattern, size)\n\n• Provide the victim's age, weight, and condition\n\n• Describe any symptoms (swelling, pain, difficulty breathing)\n\n• Share your exact location for fastest response\n\n• Follow all instructions given by emergency personnel\n\n• If possible, contact your local hospital in advance to check for antivenom availability"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
                 </LinearLayout>

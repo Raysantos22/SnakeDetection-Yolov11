@@ -9,26 +9,30 @@ import androidx.cardview.widget.CardView
 import com.SnakeDetection.R
 
 class EmergencyHotlineActivity : AppCompatActivity() {
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_emergency_hotline)
-        
+
         // Set up back button
         findViewById<CardView>(R.id.backButton).setOnClickListener {
             finish() // Return to previous screen
         }
-        
+
         // Set up emergency call buttons
         findViewById<Button>(R.id.callEmergencyButton).setOnClickListener {
             dialPhoneNumber("911")
         }
-        
-        findViewById<Button>(R.id.callPoisonControlButton).setOnClickListener {
-            dialPhoneNumber("18002221222")
+
+        findViewById<Button>(R.id.callNPMCCButton).setOnClickListener {
+            dialPhoneNumber("+63285241078")
+        }
+
+        findViewById<Button>(R.id.callRITMButton).setOnClickListener {
+            dialPhoneNumber("+63288072628")
         }
     }
-    
+
     // Function to initiate phone call intent
     private fun dialPhoneNumber(phoneNumber: String) {
         val intent = Intent(Intent.ACTION_DIAL).apply {
