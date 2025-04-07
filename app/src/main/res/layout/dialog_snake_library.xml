@@ -73,7 +73,7 @@
                         android:contentDescription="King Cobra"
                         android:padding="4dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/seasnake" />
+                        android:src="@drawable/kingcobra" />
 
                     <!-- Right side - Information with colored text -->
                     <LinearLayout
@@ -235,7 +235,7 @@
                         android:contentDescription="Pit Viper"
                         android:padding="4dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/seasnake" />
+                        android:src="@drawable/pitviper" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -395,7 +395,7 @@
                         android:contentDescription="Rat Snake"
                         android:padding="4dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/seasnake" />
+                        android:src="@drawable/ratsnake" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -554,7 +554,7 @@
                         android:contentDescription="Reticulated Python"
                         android:padding="4dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/seasnake" />
+                        android:src="@drawable/python" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -872,7 +872,7 @@
                         android:contentDescription="Flowerpot Snake"
                         android:padding="4dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/seasnake" />
+                        android:src="@drawable/flowerpot" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -2140,7 +2140,7 @@
                         android:contentDescription="Lake Taal Snake"
                         android:padding="4dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/laketaal" />
+                        android:src="@drawable/taal" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -2515,7 +2515,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="3dp"
-                                android:text="ground-dwelling in specific regions"
+                                android:text="ground-dwelling  regions"
                                 android:textColor="@color/black"
                                 android:textSize="11sp" />
                         </LinearLayout>
@@ -2538,7 +2538,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="3dp"
-                                android:text="regions with particular habitat conditions"
+                                android:text="tropical country"
                                 android:textColor="@color/black"
                                 android:textSize="11sp" />
                         </LinearLayout>
@@ -2833,7 +2833,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="3dp"
-                                android:text="Coastal of the Indo-Pacific region"
+                                android:text="Coastal of the Indo-Pacific"
                                 android:textColor="@color/black"
                                 android:textSize="11sp" />
                         </LinearLayout>

@@ -141,7 +141,7 @@ class SnakeInfoProvider {
             description = "A rare snake species found in specific regions of the Philippines. Limited information available.",
             dangerLevel = "Venomous",
             habitat = "Lake Taal region in the Philippines",
-            imageResId = R.drawable.laketaal
+            imageResId = R.drawable.taal
         )
 
         snakeInfoMap["Milk Snake"] = SnakeInfo(
